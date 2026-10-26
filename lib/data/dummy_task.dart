@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:taskflow/model/task_model.dart';
 
-final List<Task> dummyTasks = [
+const List<Task> dummyTasks = [
   Task(
     taskName: 'Finish Flutter UI',
     taskDescp: 'Complete the TaskFlow home screen',

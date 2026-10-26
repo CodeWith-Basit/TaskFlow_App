@@ -28,7 +28,7 @@ class ProgressCard extends StatelessWidget {
                   color: Colors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: FaIcon(
+                child: const FaIcon(
                   FontAwesomeIcons.medal,
                   size: 20,
                   color: Colors.white,
@@ -39,20 +39,21 @@ class ProgressCard extends StatelessWidget {
                 'Your daily progress',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                // width: 30,
-                height: 30,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Text(
+                child: const Text(
                   "38% Done",
                   style: TextStyle(
                     color: Colors.white,
@@ -64,18 +65,18 @@ class ProgressCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 '3 of 8 tasks completed',
-                style: TextStyle(color: Colors.white, fontSize: 18),
+                style: TextStyle(color: Colors.white, fontSize: 14),
               ),
               Text(
                 "5 Left",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 16,
+                  fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),
               ),

@@ -4,7 +4,7 @@ class Task {
   final bool isComplete;
   final String priority;
 
-  Task({
+  const Task({
     required this.taskName,
     required this.taskDescp,
     required this.isComplete,

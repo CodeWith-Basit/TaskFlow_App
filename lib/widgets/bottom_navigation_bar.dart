@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:taskflow/Screens/home_screen.dart';
+import 'package:taskflow/Screens/task_Screen.dart';
 import 'package:taskflow/theme/app_colors.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
@@ -32,12 +33,46 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
     });
   }
 
+  Widget _buildNavItem({
+    required int index,
+    required FaIconData icon,
+    required String label,
+  }) {
+    final bool isSelected = activeTab == index;
+    final Color color = isSelected
+        ? AppColors.primary
+        : AppColors.textSecondary;
+
+    return Expanded(
+      child: InkWell(
+        onTap: () => changeTab(index),
+        borderRadius: BorderRadius.circular(12),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FaIcon(icon, size: 20, color: color),
+            const SizedBox(height: 4),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+                color: color,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> screens = [
       const HomeScreen(),
-      const Center(child: Text("Task Category")),
-      const Center(child: Text("Calender")),
+      const TaskScreen(),
+      const Center(child: Text("Calendar")),
       const Center(child: Text("Profile")),
     ];
     return PopScope(
@@ -50,38 +85,52 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
         });
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        extendBody: true,
         body: screens[activeTab],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: activeTab,
-          onTap: (index) {
-            changeTab(index);
-          },
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Theme.of(context).cardColor,
-          selectedItemColor: Theme.of(context).colorScheme.primary,
-          selectedFontSize: 16,
-          unselectedItemColor: Theme.of(context).brightness == Brightness.dark
-              ? Colors.grey.shade400
-              : AppColors.primaryDark,
-          showUnselectedLabels: true,
-          items: [
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.listCheck),
-              label: 'Tasks',
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.calendar),
-              label: 'Calender',
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.user),
-              label: 'Profile',
-            ),
-          ],
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: AppColors.primary,
+          elevation: 4,
+          shape: const CircleBorder(),
+          child: const Icon(Icons.add, color: Colors.white, size: 28),
+        ),
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.white,
+          surfaceTintColor: Colors.white,
+          elevation: 10,
+          shadowColor: Colors.black.withValues(alpha: 0.15),
+          shape: const CircularNotchedRectangle(),
+          notchMargin: 8,
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          height: 65,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildNavItem(
+                index: 0,
+                icon: FontAwesomeIcons.house,
+                label: 'Home',
+              ),
+              _buildNavItem(
+                index: 1,
+                icon: FontAwesomeIcons.listCheck,
+                label: 'Tasks',
+              ),
+              const SizedBox(width: 56), // Space for the center notched FAB
+              _buildNavItem(
+                index: 2,
+                icon: FontAwesomeIcons.calendar,
+                label: 'Calendar',
+              ),
+              _buildNavItem(
+                index: 3,
+                icon: FontAwesomeIcons.user,
+                label: 'Profile',
+              ),
+            ],
+          ),
         ),
       ),
     );
