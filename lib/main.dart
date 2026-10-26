@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taskflow/Screens/home_screen.dart';
+import 'package:taskflow/widgets/bottom_navigation_bar.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,6 +11,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: HomeScreen());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: BottomNavigationBarWidget(),
+    );
   }
 }
