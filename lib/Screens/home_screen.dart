@@ -85,7 +85,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 20),
               const ProgressCard(),
               const SizedBox(height: 20),
-              const SectionHeader(title: "Your Tasks"),
+              const SectionHeader(title: "Your Task's"),
               const SizedBox(height: 16),
               Row(
                 children: [

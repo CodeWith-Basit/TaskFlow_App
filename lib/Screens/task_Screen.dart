@@ -127,7 +127,7 @@ class TaskCategories extends StatelessWidget {
       child: Row(
         children: [
           _categoryItem('All', true),
-          _categoryItem('Today', false),
+          _categoryItem("Todays", false),
           _categoryItem('Upcoming', false),
           _categoryItem('Complete', false),
         ],
