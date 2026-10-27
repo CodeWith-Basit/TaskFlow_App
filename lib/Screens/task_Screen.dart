@@ -129,7 +129,7 @@ class TaskCategories extends StatelessWidget {
           _categoryItem('All', true),
           _categoryItem('Today', false),
           _categoryItem('Upcoming', false),
-          _categoryItem('Completed', false),
+          _categoryItem('Complete', false),
         ],
       ),
     );
