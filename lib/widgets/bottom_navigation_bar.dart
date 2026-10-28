@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:taskflow/Screens/calender_Screen.dart';
 import 'package:taskflow/Screens/home_screen.dart';
+import 'package:taskflow/Screens/profile_screen.dart';
 import 'package:taskflow/Screens/task_Screen.dart';
 import 'package:taskflow/theme/app_colors.dart';
+import 'package:taskflow/widgets/custom_app_bar.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   final int initialIndex;
@@ -16,6 +19,20 @@ class BottomNavigationBarWidget extends StatefulWidget {
 class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   late int activeTab;
   late List<int> tabHistory;
+
+  static const List<Widget> _screens = [
+    HomeScreen(),
+    TaskScreen(),
+    CalenderScreen(),
+    ProfileScreen(),
+  ];
+
+  static const List<String> _screenTitles = [
+    'TaskFlow',
+    'My Tasks',
+    'Calendar',
+    'Profile',
+  ];
 
   @override
   void initState() {
@@ -69,12 +86,6 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> screens = [
-      const HomeScreen(),
-      const TaskScreen(),
-      const Center(child: Text("Calendar")),
-      const Center(child: Text("Profile")),
-    ];
     return PopScope(
       canPop: tabHistory.length <= 1,
       onPopInvokedWithResult: (didPop, result) {
@@ -87,7 +98,8 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         extendBody: true,
-        body: screens[activeTab],
+        appBar: CustomAppBar(title: _screenTitles[activeTab]),
+        body: _screens[activeTab],
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
