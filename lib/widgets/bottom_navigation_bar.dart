@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:taskflow/Screens/add_task_Screen.dart';
 import 'package:taskflow/Screens/calender_Screen.dart';
 import 'package:taskflow/Screens/home_screen.dart';
 import 'package:taskflow/Screens/profile_screen.dart';
@@ -102,7 +103,12 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
         body: _screens[activeTab],
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const AddTaskScreen()),
+            );
+          },
           backgroundColor: AppColors.primary,
           elevation: 4,
           shape: const CircleBorder(),
